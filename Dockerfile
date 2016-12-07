@@ -149,5 +149,5 @@ RUN chmod +x /bindgoogle.sh
 
 EXPOSE 80 443
 
-CMD /bin/bash /bindgoogle.sh $BIND_DOMAIN $BIND_LAN $PORT
+ENTRYPOINT ["/bindgoogle.sh", $BIND_DOMAIN, $BIND_LAN, $PORT]
 CMD ["nginx", "-g", "daemon off;"]
