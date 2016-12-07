@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DOMAIN=$1
-LANG=$2
-PORT=$3
+DOMAIN=$BIND_DOMAIN
+LANG=$BIND_LAN
+PORT=$PORT
 
 if [[ $DOMAIN == '' ]]; then
 	DOMAIN='www.example.com'

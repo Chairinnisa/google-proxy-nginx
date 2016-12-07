@@ -3,9 +3,6 @@ FROM alpine:latest
 MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
 
 ENV NGINX_VERSION 1.11.5
-ENV BIND_DOMAIN www.example.com
-ENV BIND_LAN de
-ENV PORT 80
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && CONFIG="\
@@ -149,5 +146,5 @@ RUN chmod +x /bindgoogle.sh
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/bindgoogle.sh", $BIND_DOMAIN, $BIND_LAN, $PORT]
+ENTRYPOINT ["/bindgoogle.sh"]
 CMD ["nginx", "-g", "daemon off;"]
