@@ -2,6 +2,7 @@
 
 DOMAIN=$1
 LANG=$2
+PORT=$3
 
 if [[ $DOMAIN == '' ]]; then
 	DOMAIN='www.example.com'
@@ -15,7 +16,7 @@ fi
 cat << EOF > /etc/nginx/conf.d/google.conf
 server {
 	server_name $DOMAIN;
-	listen       80;
+	listen       $PORT;
 	location / {
         google on;
         google_scholar on;
