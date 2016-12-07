@@ -137,16 +137,18 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN apk add --update bash && rm -rf /var/cache/apk/*
+
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 COPY bindgoogle.sh /bindgoogle.sh
+RUN apk add --update bash && rm -rf /var/cache/apk/*
+RUN chmod +x /bindgoogle.sh
 
 
 
 EXPOSE 80 443
-CMD chmod +755 /bindgoogle.sh
-CMD bash /bindgoogle.sh $BIND_DOMAIN $BIND_LAN $PORT
+
+ENTRYPOINT /bin/bash /bindgoogle.sh $BIND_DOMAIN $BIND_LAN $PORT
 
 CMD ["nginx", "-g", "daemon off;"]
